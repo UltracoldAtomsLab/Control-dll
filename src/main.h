@@ -72,7 +72,6 @@ int DLL_EXPORT
 Digital_C_ReadCtrlPoints_To_ArrayOfFPGACommands(
     int32_t iLoop,
 	char    *sCtrlPtFile,
-	double   nOffsetTime_us,
 	int32_t *nContainer,
 	uint8_t *pContainer
 );

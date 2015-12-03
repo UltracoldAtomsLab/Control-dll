@@ -48,7 +48,6 @@ void parse_8(uint32_t target, int32_t &iContainer, uint8_t *pContainer){parse( t
 int DLL_EXPORT Digital_C_ReadCtrlPoints_To_ArrayOfFPGACommands(
     int32_t iLoop,           //iteration times
 	char    *sCtrlPtFile,    //Digital Control Point file [csv]
-	double   nOffsetTime_us, //FPGA ouput time offset [us]
 	int32_t *nContainer,     //
 	uint8_t *pContainer      //
 ){
@@ -124,7 +123,6 @@ int DLL_EXPORT Digital_C_ReadCtrlPoints_To_ArrayOfFPGACommands(
 				cpt_inc = CtrlPt_DataRead (CtrlPts, iCh, i, eAttrTimeInc);
 #ifdef USE_50M_CLK
 				uint32_t temp = (uint32_t)((cpt_t.d+cpt_inc.d*(iLoop))*50000); // 1s = 50M clock-cycles => 1ms = 50k cycles
-                temp += (int32_t)(nOffsetTime_us*50.0); // 1s = 50M cycles => 1us = 50cycles
                 status = (temp >= 0)? 0 : -1;
 #else
                 uint32_t temp = (uint32_t)((cpt_t.d+cpt_inc.d*iLoop)*20); // sampling rate clock
