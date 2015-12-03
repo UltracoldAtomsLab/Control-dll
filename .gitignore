@@ -81,3 +81,5 @@ $RECYCLE.BIN/
 # Custom Files
 obj
 *.dll
+*.layout
+*.def
