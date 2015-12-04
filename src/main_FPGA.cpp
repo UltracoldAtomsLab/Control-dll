@@ -14,6 +14,7 @@
 #define SET_CH_WAVE 0x02
 #define SET_CH_INIT 0x03
 #define SET_CH_VAL  0x04
+#define SET_SPL_RATE    0x05
 #define CMD_ARM     0x80
 #define CMD_TO_INIT 0x81
 #define CMD_RESET_COUNT 0x82
@@ -266,6 +267,20 @@ void DLL_EXPORT Digital_WritePeriod(
 	pContainer[iContainer++] = SET_PERIOD;// indicating to send repeat period
 	parse_4(nPeriod, iContainer, pContainer);// period time data
 	pContainer[iContainer++] = RETURN_IDLE;// ending 0
+}
+
+void DLL_EXPORT Configure_SetSamplingRate(
+    int32_t *nContainer,
+    uint8_t *pContainer,
+    uint32_t nfreq //[kHz]
+)
+{
+    int     &iContainer = *nContainer;
+    iContainer = 0;
+
+    pContainer[iContainer++] = SET_SPL_RATE;
+    uint8_t clk_cnt_max = (uint8_t) (25000/nfreq); //25000 kHz = 50/2 Mhz = 50000/2 kHz
+    pContainer[iContainer++] = clk_cnt_max;
 }
 
 

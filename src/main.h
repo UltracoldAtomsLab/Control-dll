@@ -94,6 +94,8 @@ Digital_SetInitValue(int32_t *nByteArrayIdx, uint8_t *pByteArray, int32_t *lChLi
 void DLL_EXPORT
 Digital_WritePeriod( int32_t *nByteArrayIdx, uint8_t *pByteArray, uint32_t nPeriod);
 
+void DLL_EXPORT
+Configure_SetSamplingRate(int32_t *nByteArrayIdx, uint8_t *pByteArray, uint32_t nfreq);
 
 /*
 void DLL_EXPORT
