@@ -275,12 +275,17 @@ void DLL_EXPORT Configure_SetSamplingRate(
     uint32_t nfreq //[kHz]
 )
 {
+    /*=====================================
+    Range:
+    clk_cnt_max : 10~2550
+    freq        : 9.8kHz~2.5MHz
+    =====================================*/
     int     &iContainer = *nContainer;
     iContainer = 0;
 
     pContainer[iContainer++] = SET_SPL_RATE;
     uint8_t clk_cnt_max = (uint8_t) (25000/nfreq); //25000 kHz = 50/2 Mhz = 50000/2 kHz
-    pContainer[iContainer++] = clk_cnt_max;
+    pContainer[iContainer++] = clk_cnt_max/10;
 }
 
 
