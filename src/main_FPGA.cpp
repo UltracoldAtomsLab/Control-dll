@@ -272,7 +272,7 @@ void DLL_EXPORT Digital_WritePeriod(
 void DLL_EXPORT Configure_SetSamplingRate(
     int32_t *nContainer,
     uint8_t *pContainer,
-    uint32_t nfreq //[kHz]
+    double nfreq //[kHz]
 )
 {
     /*=====================================
@@ -284,7 +284,10 @@ void DLL_EXPORT Configure_SetSamplingRate(
     iContainer = 0;
 
     pContainer[iContainer++] = SET_SPL_RATE;
-    uint8_t clk_cnt_max = (uint8_t) (25000/nfreq); //25000 kHz = 50/2 Mhz = 50000/2 kHz
+
+    uint8_t clk_cnt_max = (uint8_t) ((25000.0/nfreq)+0.5); //25000 kHz = 50/2 Mhz = 50000/2 kHz
+    // +0.5 is for rounding. ref: http://stackoverflow.com/questions/9695329/c-how-to-round-a-double-to-an-int
+
     pContainer[iContainer++] = clk_cnt_max/10;
 }
 
