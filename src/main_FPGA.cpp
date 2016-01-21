@@ -289,6 +289,8 @@ void DLL_EXPORT Configure_SetSamplingRate(
     // +0.5 is for rounding. ref: http://stackoverflow.com/questions/9695329/c-how-to-round-a-double-to-an-int
 
     pContainer[iContainer++] = (uint8_t)(clk_cnt_max/10);
+    pContainer[iContainer++] = 0;
+
 }
 
 
